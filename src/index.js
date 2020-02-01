@@ -2,6 +2,7 @@ console.log('%c HI', 'color: firebrick')
 
 //challenge 1
 document.addEventListener('DOMContentLoaded', function() {
+    //startup routine
     fetchAllDogs()
     fetchAllBreeds()
 })
@@ -26,11 +27,18 @@ function fetchAllBreeds() {
     fetch("https://dog.ceo/api/breeds/list/all")
         .then(resp => resp.json())
         .then(data => {
-            data.message.innerHTML
+            breeds = Object.keys(data.message)
+            addBreeds(breeds)
         })
 }
 
+function addBreeds(breeds) {
+    let ul = document.querySelector('#dog-breeds');
+    breeds.forEach(breed => {
+        let li = document.createElement('li');
+        li.innerHTML = `<p class='breed'>${breed}</p>`
+        ul.appendChild(li)
+    })
+}
 
 //challenge 3
-
-//challenge 4
